@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-serif: "Iowan Old Style", "Baskerville", "Times New Roman", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-sans: "Avenir Next", "Helvetica Neue", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --background: #f7f3ec;
+  --background-soft: #fbf8f2;
+  --foreground: #1f1b17;
+  --foreground-soft: #6e665e;
+  --line: #d8d1c6;
+  --moss: #78816f;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(circle at top left, rgba(226, 219, 205, 0.8), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(206, 215, 199, 0.45), transparent 28%),
+    linear-gradient(180deg, #faf8f3 0%, var(--background) 100%);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(120, 129, 111, 0.18);
+}
+
+@layer base {
+  * {
+    @apply border-line;
+  }
+
+  a {
+    @apply transition-colors duration-300;
+  }
+
+  img {
+    @apply select-none;
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply absolute left-4 top-4 z-[100] -translate-y-24 rounded-full bg-foreground px-4 py-2 text-sm text-background transition-transform;
+  }
+
+  .skip-link:focus {
+    @apply translate-y-0;
+  }
+
+  .page-shell {
+    @apply mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-10;
+  }
+
+  .section-frame {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+
+  .section-kicker {
+    @apply text-[0.72rem] uppercase tracking-[0.32em] text-muted;
+  }
+
+  .section-title {
+    @apply mt-3 font-serif text-[clamp(2.15rem,4vw,4rem)] leading-none tracking-[0.03em] text-foreground;
+  }
+
+  .section-copy {
+    @apply mt-5 max-w-2xl text-sm leading-7 text-muted sm:text-base;
+  }
+
+  .paper-panel {
+    @apply rounded-[1.75rem] border border-[rgba(216,209,198,0.7)] bg-[rgba(251,248,242,0.78)] shadow-soft backdrop-blur-sm;
+  }
+
+  .masonry-grid {
+    column-gap: 1rem;
+  }
+
+  .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    columns: 2;
+    column-gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .masonry-grid {
+    columns: 3;
+    column-gap: 1.5rem;
+  }
+}
+
